@@ -20,15 +20,6 @@ const pool = new Pool({
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithEmail = function (email) {
-  //let resolvedUser = null;
-  //for (const userId in users) {
-  //  const user = users[userId];
-  //  if (user && user.email.toLowerCase() === email.toLowerCase()) {
-  //    resolvedUser = user;
-  //  }
-  //}
-  //return Promise.resolve(resolvedUser);
-
   return pool.query(`SELECT * FROM users WHERE email = $1;`, [email?.toLowerCase()])
     .then((result) => {
       const user = result.rows[0];
@@ -45,7 +36,6 @@ const getUserWithEmail = function (email) {
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithId = function (id) {
-  //return Promise.resolve(users[id]);
 
   const query = `
   SELECT * FROM users
@@ -67,10 +57,6 @@ const getUserWithId = function (id) {
  * @return {Promise<{}>} A promise to the user.
  */
 const addUser = function (user) {
-  //const userId = Object.keys(users).length + 1;
-  //user.id = userId;
-  //users[userId] = user;
-  //return Promise.resolve(user);
 
   const query = `
   INSERT INTO users (name, password, email)
